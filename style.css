@@ -10,7 +10,7 @@ body{
 }
 
 h1{
-    margin:50px;
+    margin:30px;
     color: #F1E9E9;
     font-size: 4rem;
 }
@@ -28,8 +28,8 @@ h1{
 .game{
     height:60vmin ;
     width: 60vmin;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: auto auto auto ;
     gap :1.5vmin;
 }
 .box {
@@ -46,7 +46,7 @@ h1{
 
 
 #reset-btn {
-    position: fixed;  
+    position: fixed;
     bottom: 20px;      
     right: 20px; 
     padding: 0.6rem;
@@ -78,4 +78,20 @@ h1{
 
 .hide{
     display: none;
+}
+
+.tie{
+    display: none;   
+}
+
+#tieMsg{
+    color: #F1E9E9;
+}
+
+#newRstbtn {
+    margin: 20px;
+    padding: 0.6rem;
+    font-size: 0.7rem;
+    background-color: #982598;
+    color: #F1E9E9; 
 }

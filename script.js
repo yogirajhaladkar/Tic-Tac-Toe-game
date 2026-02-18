@@ -2,11 +2,12 @@ let Boxs = document.querySelectorAll(".box");
 let resteBtn = document.querySelector("#reset-btn");
 let newGameBtn = document.querySelector("#new-btn");
 let msgContainer = document.querySelector(".msg-container");
-
-
+let newRst = document.querySelector("#newRstbtn")
+let tieMtch = document.querySelector(".tie")
 
 
 let turn_X = true;
+let count = 0;
 const winPatS = [
     [0, 1, 2],
     [3, 4, 5],
@@ -22,7 +23,11 @@ const winPatS = [
 const resetGame = () =>{
     turn_X = true;
     enbleBox();
+    count = 0 ;
+    winnerFound = false;
     msgContainer.classList.add("hide");
+    tieMtch.classList.add("tie");
+
     
     
 }
@@ -51,6 +56,7 @@ Boxs.forEach((box)=> {
             box.innerText="O";
             turn_X=true;
         }
+        count++;
         box.disabled=true;
         checkWinner();
     });
@@ -63,9 +69,13 @@ const shoWinner = (winner) => {
     msgContainer.classList.remove("hide");
     disableBox();
 };
-
+const matchDrow = () => {
+    tieMtch.classList.remove("tie");
+    disableBox();
+};
 
 const checkWinner = ()=>{
+    let winnerFound =false;
     for  (let pat of winPatS){
         let pos1val = Boxs[pat[0]].innerText;
         let pos2val = Boxs[pat[1]].innerText;
@@ -74,13 +84,18 @@ const checkWinner = ()=>{
         if(pos1val != "" && pos2val != "" && pos3val != ""){
             if(pos1val === pos2val && pos2val === pos3val ){
                 shoWinner(pos1val);
+                winnerFound = true;
             }
         }
-
-
+    }
+    if(count == 9 && !winnerFound ){
+        matchDrow();
 
     }
+    
 }
+
 
 newGameBtn.addEventListener("click",resetGame);
 resteBtn.addEventListener("click",resetGame);
+newRst.addEventListener("click" , resetGame)

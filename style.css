@@ -1,97 +1,289 @@
-*{
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap');
+
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-
-body{
+body {
     text-align: center;
     background-color: #15173D;
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+    background-image:
+        radial-gradient(ellipse at top left, rgba(152, 37, 152, 0.18) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom right, rgba(100, 30, 180, 0.15) 0%, transparent 50%);
 }
 
-h1{
-    margin:30px;
+h1 {
+    margin: 30px;
     color: #F1E9E9;
     font-size: 4rem;
+    font-weight: 900;
+    font-family: 'Outfit', sans-serif;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(228, 145, 201, 0.4);
 }
 
-
-.container{
+/* ── Game Grid ────────────────────────────────── */
+.container {
     height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-
-
-.game{
-    height:60vmin ;
+.game {
+    height: 60vmin;
     width: 60vmin;
     display: grid;
-    grid-template-columns: auto auto auto ;
-    gap :1.5vmin;
+    grid-template-columns: auto auto auto;
+    gap: 1.5vmin;
 }
+
 .box {
     height: 18vmin;
     width: 18vmin;
     font-size: 8vmin;
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
     background-color: #E491C9;
     color: #F1E9E9;
     border: none;
     border-radius: 1rem;
-    box-shadow: 0 0 1rem rgba(0,0,0,0.3);
+    box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
+/* Soft pink glow on box hover */
+.box:hover {
+    background-color: #eda2d4;
+    transform: scale(1.05);
+    box-shadow:
+        0 0 6px rgba(228, 145, 201, 0.6),
+        0 0 18px rgba(200, 85, 168, 0.35),
+        0 0 35px rgba(200, 85, 168, 0.18);
+}
 
-
+/* ── Reset Button ─────────────────────────────── */
 #reset-btn {
     position: fixed;
-    bottom: 20px;      
-    right: 20px; 
-    padding: 0.6rem;
-    font-size: 0.7rem;
+    bottom: 20px;
+    right: 20px;
+    padding: 0.55rem 1.1rem;
+    font-size: 0.78rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
     background-color: #982598;
     color: #F1E9E9;
-    
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
-#msg{
-    color: #F1E9E9;
-    font-size: 7vmin;
+#reset-btn:hover {
+    background-color: #ae2dae;
+    transform: scale(1.07);
+    box-shadow:
+        0 0 6px rgba(204, 0, 204, 0.5),
+        0 0 16px rgba(153, 0, 170, 0.3),
+        0 0 30px rgba(153, 0, 170, 0.15);
 }
-.msg-container{
+
+/* ── Win Screen ───────────────────────────────── */
+.msg-container {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 4rem;
+    gap: 2rem;
+    background: radial-gradient(ellipse at center, rgba(152, 37, 152, 0.2) 0%, transparent 70%);
+    animation: fadeIn 0.5s ease;
 }
 
+.win-card {
+    background: linear-gradient(135deg, rgba(228, 145, 201, 0.12), rgba(100, 30, 180, 0.12));
+    border: 1px solid rgba(228, 145, 201, 0.25);
+    border-radius: 1.6rem;
+    padding: 3rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    backdrop-filter: blur(10px);
+    box-shadow:
+        0 0 30px rgba(228, 145, 201, 0.12),
+        0 8px 32px rgba(0, 0, 0, 0.35);
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.win-emoji {
+    font-size: 4.5rem;
+    animation: bounce 1.2s infinite alternate ease-in-out;
+}
+
+#msg {
+    font-size: clamp(1.4rem, 5vmin, 2.2rem);
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(90deg, #f0a8d8, #d966c2, #9b5de5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.5px;
+    text-shadow: none;
+}
+
+/* ── New Game Button (Win screen) ─────────────── */
 #new-btn {
-    padding: 0.6rem;
-    font-size: 0.7rem;
-    background-color: #982598;
+    padding: 0.7rem 2rem;
+    font-size: 0.9rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    background: linear-gradient(135deg, #982598, #7b1fa2);
     color: #F1E9E9;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.3s ease;
+    box-shadow: 0 4px 15px rgba(152, 37, 152, 0.35);
 }
 
-.hide{
+#new-btn:hover {
+    filter: brightness(1.2);
+    transform: scale(1.07);
+    box-shadow:
+        0 0 8px rgba(204, 0, 204, 0.45),
+        0 0 18px rgba(153, 0, 170, 0.25),
+        0 4px 20px rgba(152, 37, 152, 0.4);
+}
+
+.hide {
     display: none;
 }
 
-.tie{
-    display: none;   
+/* ── Tie Screen ───────────────────────────────── */
+/* Visible state — flex layout when .tie class is absent */
+#tie-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.2rem;
+    animation: fadeIn 0.5s ease;
+    padding: 1.5rem 0;
 }
 
-#tieMsg{
-    color: #F1E9E9;
+/* JS adds .tie class to hide, removes it to show */
+.tie {
+    display: none !important;
 }
 
+.tie-card {
+    background: linear-gradient(135deg, rgba(100, 180, 228, 0.1), rgba(50, 80, 180, 0.12));
+    border: 1px solid rgba(150, 190, 240, 0.22);
+    border-radius: 1.4rem;
+    padding: 2.2rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    backdrop-filter: blur(10px);
+    box-shadow:
+        0 0 25px rgba(120, 160, 228, 0.12),
+        0 8px 28px rgba(0, 0, 0, 0.3);
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.tie-emoji {
+    font-size: 3.8rem;
+    animation: shake 1.5s infinite ease-in-out;
+}
+
+#tieMsg {
+    font-size: clamp(1.2rem, 4vmin, 1.8rem);
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(90deg, #90caf9, #7986cb, #ce93d8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.5px;
+}
+
+/* ── New Game Button (Tie screen) ─────────────── */
 #newRstbtn {
-    margin: 20px;
-    padding: 0.6rem;
-    font-size: 0.7rem;
-    background-color: #982598;
-    color: #F1E9E9; 
+    margin: 4px 0;
+    padding: 0.7rem 2rem;
+    font-size: 0.9rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    background: linear-gradient(135deg, #3949ab, #6a1b9a);
+    color: #F1E9E9;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: transform 0.2s ease, box-shadow 0.3s ease, filter 0.3s ease;
+    box-shadow: 0 4px 15px rgba(57, 73, 171, 0.35);
+}
+
+#newRstbtn:hover {
+    filter: brightness(1.25);
+    transform: scale(1.07);
+    box-shadow:
+        0 0 8px rgba(100, 130, 220, 0.45),
+        0 0 18px rgba(80, 80, 200, 0.25),
+        0 4px 20px rgba(57, 73, 171, 0.4);
+}
+
+/* ── Keyframe Animations ──────────────────────── */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0px);
+    }
+
+    to {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: rotate(-8deg);
+    }
+
+    50% {
+        transform: rotate(8deg);
+    }
 }

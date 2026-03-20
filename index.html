@@ -4,23 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic-Tac_Toe</title>
+    <title>Tic-Tac-Toe</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <!-- Win Screen -->
     <div class="msg-container hide">
-        <p id="msg">Winner</p>
-        <button id="new-btn">New Game</button>
+        <div class="win-card">
+            <div class="win-emoji">🏆</div>
+            <p id="msg">Winner</p>
+            <button id="new-btn">🎮 Play Again</button>
+        </div>
     </div>
+
     <main>
         <h1>Tic Tac Toe</h1>
-        <div class="tie">
-            <h2 id="tieMsg">Match Tied, Play Again !!</h2>
-            <button id="newRstbtn">New Game</button>
+
+        <!-- Tie Screen -->
+        <div id="tie-screen" class="tie">
+            <div class="tie-card">
+                <div class="tie-emoji">🤝</div>
+                <h2 id="tieMsg">It's a Tie! Play Again!</h2>
+                <button id="newRstbtn">🎮 Play Again</button>
+            </div>
         </div>
 
-        </div>
         <div class="container">
             <div class="game">
                 <button class="box"></button>
@@ -34,11 +43,8 @@
                 <button class="box"></button>
             </div>
         </div>
-        <button id="reset-btn">Reset Game</button>
+        <button id="reset-btn">↺ Reset Game</button>
     </main>
-
-
-
 
     <script src="script.js"></script>
 </body>
